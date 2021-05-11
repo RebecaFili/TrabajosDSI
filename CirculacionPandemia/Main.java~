@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class Main {
+  
+  
+  public static void main(String[] args) { 
+    System.out.println("Ingrese una de las siguientes opciones");
+    System.out.println("1 --> Registrar Persona");
+    System.out.println("2 --> Registrar actividades autorizadas");
+    
+    Scanner scanner = new Scanner(System.in);
+    int opcion = scanner.nextInt();
+    switch(opcion){
+      case 1:
+        RegistrarPersona();
+      break; 
+      case 2:
+        RegistrarActividad();
+      break;
+    }
+  }
+  
+  public static void RegistrarPersona(){
+    RepositorioPersona listadoPersonas = new RepositorioPersona();
+    
+    System.out.println("Ingrese apellido");
+    Scanner scanner = new Scanner(System.in);
+    String apellido = scanner.nextLine();
+    
+    System.out.println("Ingrese dni");
+    int dni = scanner.nextInt();
+
+    Persona persona1 = new Persona(dni, apellido);
+    //Autorizada
+    listadoPersonas.AgregarPersona(persona1);
+    System.out.println(persona1.getApellido() + ": Registrado correctamente");
+    
+    Persona persona2 = new Persona(17070650, "Rodriguez");
+    //Autorizada
+    listadoPersonas.AgregarPersona(persona2);
+    System.out.println(persona2.getApellido() + ": Registrado correctamente");
+    
+    //No autorizada
+    Persona persona3 = new Persona(39125670, "Sanchez");
+    System.out.println(persona3.getApellido() + ": Registrado correctamente");
+    
+  }
+  
+  public static void RegistrarActividad(){
+    RepositorioActividad listadoActividades = new RepositorioActividad();
+    
+    System.out.println("Ingrese la actividad");
+    Scanner scanner = new Scanner(System.in);
+    String descripcionActividad = scanner.nextLine();
+    
+    ActividadAutorizada actividad1 = new ActividadAutorizada(descripcionActividad);
+    listadoActividades.AgregarActividad(actividad1);
+    System.out.println("Actividad autorizada: " + actividad1.getDescripcionActividad() + " registrada correctamente");
+    
+  }
+  
+}
+
