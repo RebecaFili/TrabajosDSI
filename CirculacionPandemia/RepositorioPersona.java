@@ -7,6 +7,19 @@ public class RepositorioPersona {
     listadoPersonas.add(nueva);
   }
   
+  public int CantidadPersonas(){
+    return listadoPersonas.size();
+  }
+  
+  public Persona ObtenerPersona(String apellido){
+    for (Persona persona : listadoPersonas){
+      if(persona.getApellido().equalsIgnoreCase(apellido)){
+        return persona;
+      }
+    }
+    return null;
+  }
+  
   public Persona VerificarAutorizacion(int dni){
     for (Persona i : listadoPersonas){
       if(i.getDni() == (dni)){

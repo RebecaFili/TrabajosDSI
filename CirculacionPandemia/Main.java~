@@ -5,8 +5,11 @@ public class Main {
   
   public static void main(String[] args) { 
     System.out.println("Ingrese una de las siguientes opciones");
-    System.out.println("1 --> Registrar Persona");
+    System.out.println("1 --> Registrar persona");
     System.out.println("2 --> Registrar actividades autorizadas");
+    System.out.println("3 --> Registrar empresa");
+    System.out.println("4 --> Autorizar ingreso");
+    System.out.println("5 --> Registrar baja de empleado"); 
     
     Scanner scanner = new Scanner(System.in);
     int opcion = scanner.nextInt();
@@ -16,6 +19,18 @@ public class Main {
       break; 
       case 2:
         RegistrarActividad();
+      break;
+      case 3:
+        RegistrarEmpresa();
+      break;
+      case 4:
+        RegistrarPersona();
+        RegistrarEmpresa();
+        AutorizarIngreso();
+      break;
+      case 5:
+        RegistrarPersona();
+        RegistrarBajaEmpleado();
       break;
     }
   }
@@ -31,19 +46,18 @@ public class Main {
     int dni = scanner.nextInt();
 
     Persona persona1 = new Persona(dni, apellido);
-    //Autorizada
     listadoPersonas.AgregarPersona(persona1);
-    System.out.println(persona1.getApellido() + ": Registrado correctamente");
+    System.out.println(persona1.getApellido() + " se ha registrado correctamente");
     
     Persona persona2 = new Persona(17070650, "Rodriguez");
-    //Autorizada
     listadoPersonas.AgregarPersona(persona2);
-    System.out.println(persona2.getApellido() + ": Registrado correctamente");
+    System.out.println(persona2.getApellido() + " se ha registrado correctamente");
     
-    //No autorizada
     Persona persona3 = new Persona(39125670, "Sanchez");
-    System.out.println(persona3.getApellido() + ": Registrado correctamente");
+    listadoPersonas.AgregarPersona(persona3);
+    System.out.println(persona3.getApellido() + " se ha registrado correctamente");
     
+    System.out.println("Cantidad de personas" + listadoPersonas.CantidadPersonas());
   }
   
   public static void RegistrarActividad(){
@@ -55,9 +69,56 @@ public class Main {
     
     ActividadAutorizada actividad1 = new ActividadAutorizada(descripcionActividad);
     listadoActividades.AgregarActividad(actividad1);
-    System.out.println("Actividad autorizada: " + actividad1.getDescripcionActividad() + " registrada correctamente");
+    System.out.println("La actividad autorizada " + actividad1.getDescripcionActividad() + " se ha registrado correctamente");
     
   }
   
+  public static void RegistrarEmpresa(){
+    
+    System.out.println("Ingrese razon social");
+    Scanner scanner = new Scanner(System.in);
+    String razonSocial = scanner.nextLine();
+    
+    Empresa empresa1 = new Empresa(razonSocial);
+    System.out.println("La empresa " + empresa1.getRazonSocial() + " se registro correctamente");
+    
+    Empresa empresa2 = new Empresa("Hermanos S.A.");
+    System.out.println("La empresa " + empresa2.getRazonSocial() + " se registro correctamente");
+    
+    Empresa empresa3 = new Empresa("Servicios S.A.");
+    System.out.println("La empresa " + empresa3.getRazonSocial() + " se registro correctamente");
+    
+  }
+  
+  public static void AutorizarIngreso(){
+    RepositorioPersona listadoPersonas = new RepositorioPersona();
+    
+    System.out.println("\nPara verificar la autorizacion ingrese el dni");
+    Scanner scanner = new Scanner(System.in);
+    int dni = scanner.nextInt();
+    Persona i = listadoPersonas.VerificarAutorizacion(dni);
+    
+    if(i == null){
+      System.out.println("Acceso denegado");
+    }else {
+      System.out.println("Acceso concedido");
+    }
+   }
+  
+  public static void RegistrarBajaEmpleado(){
+    RepositorioPersona listadoPersonas = new RepositorioPersona();
+    
+    System.out.println("Para dar de baja, ingrese el apellido del empleado");
+    Scanner scanner = new Scanner(System.in);
+    String apellido = scanner.nextLine();
+    Persona persona = listadoPersonas.ObtenerPersona(apellido);
+    
+    if (persona == null){
+      System.out.println("La persona no existe en el registro");
+    }
+    else{
+      System.out.println("Baja del empleado " + persona + " registrada");
+   }
 }
 
+}

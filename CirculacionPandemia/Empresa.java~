@@ -1,0 +1,18 @@
+
+public class Empresa {
+  private String razonSocial;
+  private long cuit;
+  private String domicilio;
+  private String localidad;
+  private String email;
+  private long telefono;
+  
+  public Empresa(String razonSocial){
+    this.razonSocial = razonSocial;
+  }
+  
+  public String getRazonSocial(){
+    return this.razonSocial;
+  }
+  
+}
