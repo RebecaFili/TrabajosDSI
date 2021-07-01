@@ -1,4 +1,5 @@
 import java.util.*;
+import java.time.LocalDate;
 
 public class RepositorioPersona {
   private static ArrayList<Persona> listadoPersonas = new ArrayList<Persona>();
@@ -28,5 +29,13 @@ public class RepositorioPersona {
     }
     return null;
   }
+  
+  //public boolean Verificar(){
+    //boolean i = false;
+    //if(this.getFechaFin().isAfter(LocalDate.now())){
+      //i = true;
+    //}
+    //return i;
+  //}
   
 }

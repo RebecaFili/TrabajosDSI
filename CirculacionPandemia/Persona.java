@@ -1,6 +1,5 @@
-/**
- * Auto Generated Java Class.
- */
+import java.time.LocalDate;
+  
 public class Persona {
   private int dni;
   private String nombre;
@@ -8,6 +7,8 @@ public class Persona {
   private String domicilio;
   private long telefono;
   private String email;
+  private LocalDate fechaInicio;
+  private LocalDate fechaFin;
   
   public Persona (int dni, String apellido){
     this.dni = dni;
@@ -16,6 +17,8 @@ public class Persona {
     this.domicilio = domicilio; 
     this.telefono = telefono;
     this.email = email;
+    this.fechaInicio = fechaInicio;
+    this.fechaFin = fechaFin;
   }
   
   public int getDni(){
@@ -62,6 +65,20 @@ public class Persona {
   
   public String toString() {
     return this.apellido;
+  }
+  
+  public LocalDate getFechaInicio(){
+    return this.fechaInicio;
+  }
+  public void setFechaInicio(LocalDate fechaInicio){
+    this.fechaFin = fechaFin;
+  }
+  
+  public LocalDate getFechaFin(){
+    return this.fechaFin;
+  }
+  public void setFechaFin(LocalDate fechaFin){
+    this.fechaFin = fechaFin;
   }
   
 }

@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Main {
   
@@ -42,7 +43,7 @@ public class Main {
   
   public static void RegistrarPersona(){
     RepositorioPersona listadoPersonas = new RepositorioPersona();
-    
+       
     System.out.println("Ingrese apellido");
     Scanner scanner = new Scanner(System.in);
     String apellido = scanner.nextLine();
@@ -121,8 +122,6 @@ public class Main {
       else{
         empresa.AgregarEmpleado(persona);  
         System.out.println("Registrado correctamente");
-        System.out.println("Ingrese el rango de fecha en la que se encontrara habilitado");
-        String fecha = scanner.nextLine();
       }
     }
   }
@@ -138,9 +137,19 @@ public class Main {
     if(i == null){
       System.out.println("Acceso denegado");
     }else {
-      System.out.println("Acceso concedido");
-    }
-   }
+      System.out.println("Persona autorizada encontrada");
+      
+      System.out.println("Ingrese la tempertura tomada");
+      int temperatura = scanner.nextInt();
+      
+      if(temperatura >37){
+        System.out.println("Acceso denegado");
+      }
+      else{
+        System.out.println("Acceso concedido");
+      }
+    }   
+  }
   
   public static void RegistrarBajaEmpleado(){
     RepositorioPersona listadoPersonas = new RepositorioPersona();
